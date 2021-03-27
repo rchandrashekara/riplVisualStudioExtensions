@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TextManager.Interop;
+using Microsoft.VisualStudio.Text.Editor;
 using System;
 using System.ComponentModel.Design;
 using System.Globalization;
@@ -15,7 +17,7 @@ namespace riplVisualStudioExtensions {
     /// <summary>
     /// Command ID.
     /// </summary>
-    public const int CommandId = 256;
+    public const int CommandId = 0x101;
 
     /// <summary>
     /// Command menu group (command set GUID).
@@ -80,18 +82,24 @@ namespace riplVisualStudioExtensions {
     /// <param name="sender">Event sender.</param>
     /// <param name="e">Event args.</param>
     private void Execute(object sender, EventArgs e) {
-      ThreadHelper.ThrowIfNotOnUIThread();
-      string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-      string title = "AddAdornmentCommand";
+      var task = this.ServiceProvider.GetServiceAsync(typeof(SVsTextManager));
+      task.Wait();
+      var txtMgr = task.Result as IVsTextManager;
+      IVsTextView vTextView = null;
+      int mustHaveFocus = 1;
+      txtMgr.GetActiveView(mustHaveFocus, null, out vTextView);
 
-      // Show a message box to prove we were here
-      VsShellUtilities.ShowMessageBox(
-          this.package,
-          message,
-          title,
-          OLEMSGICON.OLEMSGICON_INFO,
-          OLEMSGBUTTON.OLEMSGBUTTON_OK,
-          OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+      IVsUserData userData = vTextView as IVsUserData;
+      if (userData == null) {
+        Console.WriteLine("No text view is currently open");
+        return;
+      }
+      IWpfTextViewHost viewHost;
+      object holder;
+      Guid guidViewHost = DefGuidList.guidIWpfTextViewHost;
+      userData.GetData(ref guidViewHost, out holder);
+      viewHost = (IWpfTextViewHost)holder;
+      Connector.Execute(viewHost);
     }
   }
 }
