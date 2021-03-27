@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Editor;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Editor;
 
 namespace riplVisualStudioExtensions {
   internal class CommentAdornmentProvider {

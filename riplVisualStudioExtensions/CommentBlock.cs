@@ -1,14 +1,9 @@
 ﻿// Code is derived from: https://docs.microsoft.com/en-gb/previous-versions/visualstudio/visual-studio-2015/extensibility/walkthrough-using-a-shell-command-with-an-editor-extension?view=vs-2015&redirectedfrom=MSDN
 
-using Microsoft.VisualStudio.Text;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Shapes;
-using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.Utilities;
 
 namespace riplVisualStudioExtensions {
   class CommentBlock : Canvas {

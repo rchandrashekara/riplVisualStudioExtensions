@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.ComponentModel.Composition;
+﻿
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
+using System.ComponentModel.Composition;
 
 namespace riplVisualStudioExtensions {
   [Export(typeof(IWpfTextViewCreationListener))]

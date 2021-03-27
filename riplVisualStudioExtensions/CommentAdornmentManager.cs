@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Media;
-using Microsoft.VisualStudio.Text;
+﻿using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Formatting;
+using System;
+using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace riplVisualStudioExtensions {
   internal class CommentAdornmentManager {

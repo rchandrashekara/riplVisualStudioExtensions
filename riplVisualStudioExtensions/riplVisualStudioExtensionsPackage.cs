@@ -4,8 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Task = System.Threading.Tasks.Task;
 
-namespace riplVisualStudioExtensions
-{
+namespace riplVisualStudioExtensions {
   /// <summary>
   /// This is the class that implements the package exposed by this assembly.
   /// </summary>
@@ -26,8 +25,7 @@ namespace riplVisualStudioExtensions
   [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
   [Guid(riplVisualStudioExtensionsPackage.PackageGuidString)]
   [ProvideMenuResource("Menus.ctmenu", 1)]
-  public sealed class riplVisualStudioExtensionsPackage : AsyncPackage
-  {
+  public sealed class riplVisualStudioExtensionsPackage : AsyncPackage {
     /// <summary>
     /// riplVisualStudioExtensionsPackage GUID string.
     /// </summary>
@@ -42,13 +40,12 @@ namespace riplVisualStudioExtensions
     /// <param name="cancellationToken">A cancellation token to monitor for initialization cancellation, which can occur when VS is shutting down.</param>
     /// <param name="progress">A provider for progress updates.</param>
     /// <returns>A task representing the async work of package initialization, or an already completed task if there is none. Do not return null from this method.</returns>
-    protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
-    {
+    protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress) {
       // When initialized asynchronously, the current thread may be a background thread at this point.
       // Do any initialization that requires the UI thread after switching to the UI thread.
       await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-        await CopyWithLineNumbersCommand.InitializeAsync(this);
-        await AddAdornmentCommand.InitializeAsync(this);
+      await CopyWithLineNumbersCommand.InitializeAsync(this);
+      await AddAdornmentCommand.InitializeAsync(this);
     }
 
     #endregion

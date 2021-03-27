@@ -1,10 +1,7 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.TextManager.Interop;
-using Microsoft.VisualStudio.Utilities;
 using System;
-using System.ComponentModel.Composition;
 using System.ComponentModel.Design;
 using System.Globalization;
 using Task = System.Threading.Tasks.Task;
@@ -14,7 +11,7 @@ namespace riplVisualStudioExtensions {
     /// <summary>
     /// Command ID.
     /// </summary>
-  public const int CommandId = 0x0100;
+    public const int CommandId = 0x0100;
 
     /// <summary>
     /// Command menu group (command set GUID).
