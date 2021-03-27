@@ -80,8 +80,10 @@ namespace riplVisualStudioExtensions {
     /// <param name="e">Event args.</param>
     private void Execute(object sender, EventArgs e) {
       var task = this.ServiceProvider.GetServiceAsync(typeof(SVsTextManager));
+#pragma warning disable VSTHRD002 // Avoid problematic synchronous waits
       task.Wait();
       var txtMgr = task.Result as IVsTextManager;
+#pragma warning restore VSTHRD002 // Avoid problematic synchronous waits
       IVsTextView vTextView = null;
       int mustHaveFocus = 1;
       txtMgr.GetActiveView(mustHaveFocus, null, out vTextView);
