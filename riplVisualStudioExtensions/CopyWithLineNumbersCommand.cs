@@ -121,7 +121,7 @@ namespace riplVisualStudioExtensions {
         sTxt += string.Format("{0,4:d}:    {1}\n", i, line);
         sRtf += string.Format("{0,4:d}:    {1}\\line\n", i, line);
       }
-
+      
       var dataObject = new DataObject();
       dataObject.SetData(DataFormats.Text, sTxt);
       dataObject.SetData(DataFormats.Rtf, sRtf);
