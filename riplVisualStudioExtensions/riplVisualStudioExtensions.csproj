@@ -56,7 +56,7 @@
     <Compile Include="riplVisualStudioExtensionsPackage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE">
+    <Content Include="LICENSE.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

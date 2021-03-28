@@ -127,7 +127,8 @@ namespace riplVisualStudioExtensions {
       }
 
       var isKeyword = new Func<string, bool>(w => {
-        return new[] { "let", "for", "do", "if", "then", "elif", "else", "open" }.Contains(w);
+        return new[] { "let", "for", "do", "if", "then", "elif", "else", "open",
+        "module", "namespace", "<-", ":"}.Contains(w);
       });
 
       var start = textView.Selection.Start.Position.Position;
@@ -141,13 +142,15 @@ namespace riplVisualStudioExtensions {
 \pard\sa200\sl276\slmult1\f0\fs22\lang9 ";
       for (var i = lineStart; i <= lineEnd; i++) {
         var line = textView.TextSnapshot.GetLineFromLineNumber(i).GetText();
-        sTxt += string.Format("{0,4:d}:    {1}\n", i, line);
-        var words = line.Split(' ');
-        sRtf += string.Format("{0,4:d}:    ", i);
+        sTxt += string.Format("{0,4:d}:    {1}\n", i + 1, line);
+        var words = line.Split(' ', '\t');
+        sRtf += string.Format("{0,4:d}:    ", i + 1);
         bool inComment = false;
         bool inString = false;
         for (var j = 0; j < words.Length; j++) {
-          if (words[j].StartsWith("//")) {
+          if (string.IsNullOrEmpty(words[j])) {
+            sRtf += string.Format("{0}", " ");
+          } else if (words[j].StartsWith("//")) {
             sRtf += string.Format("\\cf2 {0} ", words[j]);
             inComment = true;
           }
@@ -166,13 +169,13 @@ namespace riplVisualStudioExtensions {
           }
           else if (isKeyword(words[j])) {
             sRtf += string.Format("\\cf3 {0} ", words[j]);
-          }
-          else {
+          } else { 
             sRtf += string.Format("\\cf0 {0} ", words[j]);
           }
         }
-        sRtf += "\\cf0\\line\n";
+        sRtf += "\\line\n";
       }
+      sRtf += "\\par}\n";
 
       var dataObject = new DataObject();
       dataObject.SetData(DataFormats.Text, sTxt);

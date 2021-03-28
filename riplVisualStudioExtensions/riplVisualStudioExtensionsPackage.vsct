@@ -72,7 +72,7 @@
         <Parent guid="guidriplVisualStudioExtensionsPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic2" />
         <Strings>
-          <ButtonText>Invoke AddAdornmentCommand</ButtonText>
+          <ButtonText>Add Comment</ButtonText>
         </Strings>
       </Button>
     </Buttons>

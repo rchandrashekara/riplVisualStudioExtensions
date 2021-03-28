@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="riplVisualStudioExtensions.31a4f24b-c194-416a-9ba0-39ec3fddd50e" Version="1.0" Language="en-US" Publisher="Raj Chandrashekara" />
+        <Identity Id="riplVisualStudioExtensions.31a4f24b-c194-416a-9ba0-39ec3fddd50e" Version="1.01" Language="en-US" Publisher="Raj Chandrashekara" />
         <DisplayName>ripl Visual Studio Extensions</DisplayName>
         <Description xml:space="preserve">A set of useful extensions, mainly for myself.
 
 1. Copy code with line numbers.
 2. Comment adornments (from Visual Studio Extension Documentation, needs to be extended and completed to make it useful).</Description>
         <MoreInfo>http://rchandra.com/ripl-vsix</MoreInfo>
-        <License>LICENSE</License>
+        <License>LICENSE.rtf</License>
         <Icon>Resources\CopyWithLineNumbersCommand.png</Icon>
         <PreviewImage>Resources\CopyWithLineNumbersCommand.png</PreviewImage>
         <Tags>copy with line numbers</Tags>
