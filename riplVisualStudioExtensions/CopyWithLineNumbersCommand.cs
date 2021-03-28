@@ -29,6 +29,7 @@ using Microsoft.VisualBasic.Devices;
 using System.Windows;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Linq;
 
 namespace riplVisualStudioExtensions {
   internal sealed class CopyWithLineNumbersCommand {
@@ -125,21 +126,54 @@ namespace riplVisualStudioExtensions {
         return;
       }
 
+      var isKeyword = new Func<string, bool>(w => {
+        return new[] { "let", "for", "do", "if", "then", "elif", "else", "open" }.Contains(w);
+      });
+
       var start = textView.Selection.Start.Position.Position;
       var end = textView.Selection.End.Position.Position;
       var lineStart = textView.TextSnapshot.GetLineFromPosition(start).LineNumber;
       var lineEnd = textView.TextSnapshot.GetLineFromPosition(end).LineNumber;
       var sTxt = "";
       var sRtf = @"{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Courier New;}}
-{\colortbl ;\red255\green0\blue0;}
+{\colortbl ;\red163\green21\blue21;\red34\green177\blue76;\red63\green72\blue204;}
 {\*\generator riplVisualStudioExtensions 1.0}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\f0\fs22\lang9 ";
       for (var i = lineStart; i <= lineEnd; i++) {
         var line = textView.TextSnapshot.GetLineFromLineNumber(i).GetText();
         sTxt += string.Format("{0,4:d}:    {1}\n", i, line);
-        sRtf += string.Format("{0,4:d}:    {1}\\line\n", i, line);
+        var words = line.Split(' ');
+        sRtf += string.Format("{0,4:d}:    ", i);
+        bool inComment = false;
+        bool inString = false;
+        for (var j = 0; j < words.Length; j++) {
+          if (words[j].StartsWith("//")) {
+            sRtf += string.Format("\\cf2 {0} ", words[j]);
+            inComment = true;
+          }
+          else if (inComment) {
+            sRtf += string.Format("{0} ", words[j]);
+          }
+          else if (words[j].StartsWith("\"")) {
+            sRtf += string.Format("\\cf1 {0} ", words[j]);
+            inString = true;
+          }
+          else if (inString) {
+            sRtf += string.Format("\\cf1 {0} ", words[j]);
+            if (words[j].EndsWith("\"")) {
+              inString = false;
+            }
+          }
+          else if (isKeyword(words[j])) {
+            sRtf += string.Format("\\cf3 {0} ", words[j]);
+          }
+          else {
+            sRtf += string.Format("\\cf0 {0} ", words[j]);
+          }
+        }
+        sRtf += "\\cf0\\line\n";
       }
-      
+
       var dataObject = new DataObject();
       dataObject.SetData(DataFormats.Text, sTxt);
       dataObject.SetData(DataFormats.Rtf, sRtf);
