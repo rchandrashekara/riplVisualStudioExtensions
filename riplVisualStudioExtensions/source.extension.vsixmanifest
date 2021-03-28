@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="riplVisualStudioExtensions.31a4f24b-c194-416a-9ba0-39ec3fddd50e" Version="1.0" Language="en-US" Publisher="Raghavendra Chandrashekara" />
+        <Identity Id="riplVisualStudioExtensions.31a4f24b-c194-416a-9ba0-39ec3fddd50e" Version="1.0" Language="en-US" Publisher="Raj Chandrashekara" />
         <DisplayName>ripl Visual Studio Extensions</DisplayName>
         <Description xml:space="preserve">A set of useful extensions, mainly for myself.
 
