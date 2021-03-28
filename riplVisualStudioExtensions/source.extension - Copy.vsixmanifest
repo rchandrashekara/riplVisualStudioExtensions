@@ -7,11 +7,9 @@
 
 1. Copy code with line numbers.
 2. Comment adornments (from Visual Studio Extension Documentation, needs to be extended and completed to make it useful).</Description>
-        <MoreInfo>http://rchandra.com/ripl-vsix</MoreInfo>
         <License>LICENSE</License>
         <Icon>Resources\CopyWithLineNumbersCommand.png</Icon>
         <PreviewImage>Resources\CopyWithLineNumbersCommand.png</PreviewImage>
-        <Tags>copy with line numbers</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
