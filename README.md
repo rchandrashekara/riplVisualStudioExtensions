@@ -1,6 +1,6 @@
 # ripl Visual Studio Extensions
 
-These are a set of Visual Studio Extensions that I created for myself while writing my book Get Going With F#. All commands are accessed through the _Extensions > ripl_ menu. The following menu items are implemented:
+These are a set of Visual Studio Extensions that I created for myself while writing my book [Get Going With F#](https://github.com/rchandrashekara/get-going-with-fsharp). All commands are accessed through the _Extensions > ripl_ menu. The following menu items are implemented:
 
 1. **Copy with Line Numbers:** Copies the selected text with line numbers. The copied text is placed in the clipboard in two data formats, plain text and also RTF. The command works best with F# but other languages should also be supported as many languages share common keywords like if, for, then, do, etc. ...
 
